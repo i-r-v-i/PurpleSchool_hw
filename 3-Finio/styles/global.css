@@ -19,6 +19,7 @@
 body {
     background: var(--bg-color-light);
     font-family: var(--font-family);
+    min-width: 376px;
 }
 
 main {
