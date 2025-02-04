@@ -1,5 +1,6 @@
 const changeLanguage = (lang) => {
-    switch (lang) {
+    const language = lang.toUpperCase();
+    switch (language) {
     case 'EN':
         console.log('Good afternoon!'); 
         break;   
@@ -20,4 +21,5 @@ const changeLanguage = (lang) => {
 
 changeLanguage('IT');
 changeLanguage('EN');
-changeLanguage('DE');
+changeLanguage('eN');
+changeLanguage('de');
