@@ -1,37 +1,62 @@
-const convertMoney = (sum, currencyFrom, currencyTo) => {
-  const rubToUSD = 96;
-  const USDToRub = (1 / rubToUSD).toFixed(2);
-  const rubToEuro = 101;
-  const euroToRub = (1 / rubToEuro).toFixed(2);
-  const USDToEuro = 1.04;
-  const euroToUsd = (1 / USDToEuro).toFixed(2);
-
-  currencyFrom = currencyFrom.toUpperCase();
-  currencyTo = currencyTo.toUpperCase();
-  let tagget;
-  // RUB, USD, EURO
-  const taggetRate = () => {
-  switch (true) {
-    case currencyFrom === "RUB" && currencyTo === "USD":
-      return tagget=USDToRub;
-    case currencyFrom === "USD" && currencyTo === "RUB":
-      return tagget=rubToUSD;
-    case currencyFrom === "EURO" && currencyTo === "RUB":
-      return tagget=rubToEuro;
-    case currencyFrom === "RUB" && currencyTo === "EURO":
-      return tagget=euroToRub;
-    case currencyFrom === "USD" && currencyTo === "EURO":
-      return tagget=euroToUsd;
-    case currencyFrom === "EURO" && currencyTo === "USD":
-      return tagget=USDToEuro;
-    default:
-      return tagget=0;
-  }
+const CURRENCY_LIST = {
+  USD: { sum: 90, marker: '$'},
+  EUR: { sum: 100, marker: '€' },
+  RUB: { sum: 1, marker: '₽' },
 }
-  return sum * taggetRate() || null;
+
+function isValidCurrency(currency){
+  const isExists = Object.keys(CURRENCY_LIST).includes(currency);
+  if(!isExists){
+      console.log(`Валюта [${currency}] не поддерживается для обмена`);
+  }
+  return isExists;
+}
+
+// const taggetRate = (from, to) => {
+//   let tagget;
+//   switch (true) {
+//     case from === "RUB" && to === "USD":
+//       return tagget=USDToRub;
+//     case from === "USD" && to === "RUB":
+//       return tagget=rubToUSD;
+//     case from === "EURO" && to === "RUB":
+//       return tagget=rubToEuro;
+//     case from === "RUB" && to === "EURO":
+//       return tagget=euroToRub;
+//     case from === "USD" && to === "EURO":
+//       return tagget=euroToUsd;
+//     case from === "EURO" && to === "USD":
+//       return tagget=USDToEuro;
+//     default:
+//       return tagget=0;
+//   }
+// }
+
+const convertMoney = (sum, from, to) => {
+  from = from.toUpperCase();
+  to = to.toUpperCase();
+ 
+  if (from === to) {
+    return `Входящая и исходящая валюта одинаковы. Конвертация невозможна`;
+}
+
+// Проверяем наличие входящей валюты для обмена
+if (!isValidCurrency(from)) {
+    return null;
+}
+// Проверяем наличие исходящей валюты для обмена
+if (!isValidCurrency(to)) {
+    return null;
+}
+  // return sum * taggetRate() || null;
+  const { sum: a, marker: im } = CURRENCY_LIST[from]; // im = inMarker
+  const { sum: b, marker: om } = CURRENCY_LIST[to]; // om = outMarker
+
+    return `В результате обмена ${sum}${im} Вы получите ${(sum * a / b).toFixed(2)}${om}`
 };
 
-console.log(convertMoney(1, "euro", "ghj"));
-console.log(convertMoney(1, "rub", "euro"));
-console.log(convertMoney(1, "euro", "usd"));
+
+console.log(convertMoney(1, "eur", "ghj"));
+console.log(convertMoney(1, "eur", "eur"));
+console.log(convertMoney(1, "eur", "usd"));
 console.log(convertMoney(1, "usd", "rub"));
