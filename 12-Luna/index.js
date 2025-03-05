@@ -55,7 +55,7 @@ const sumOfNumbers = (arr) => {
   }, 0);
 };
 
-// уточняем, проходит ли номер карты алгорит Луна
+// уточняем, проходит ли номер карты алгоритм Луна
 const isLunaAlgosValid = (card) => {
   const cardNum = validateData(card)?.toString();
   if (!cardNum) {
@@ -65,5 +65,5 @@ const isLunaAlgosValid = (card) => {
   return sumOfNumbers(cardArr) % 10 === 0;
 };
 
-//запускаем проверку на массивеп номеров, либо на отдельном номере
+//запускаем проверку на массиве номеров, либо на отдельном номере
 cards.forEach((card) => isLunaAlgosValid(card));
