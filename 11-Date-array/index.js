@@ -40,12 +40,11 @@ const changeFormat = (arr) => {
   return dates;
 };
 
-const dates = changeFormat(dataArray);
-
 // отсеиваем строки, не являющиеся датами, или содержащими ошибку
 const isValidate = (arr) => {
+  const dates = changeFormat(arr)
   const res = [];
-  for (const el of arr) {
+  for (const el of dates) {
     const date = new Date(el);
     if (date != "Invalid Date") {
       res.push(date);
@@ -53,8 +52,6 @@ const isValidate = (arr) => {
   }
   return res;
 };
-
-const arrDates = isValidate(dates);
 
 // форматируем дату по единому шаблону
 const formatDate = (date) => {
@@ -65,9 +62,12 @@ const formatDate = (date) => {
 };
 
 const formatArr = (arr) => {
-  return arr.map((el) => {
+  const arrDates = isValidate(arr);
+  return arrDates.map((el) => {
     return formatDate(el);
   });
 };
 
-const dd = formatArr(arrDates);
+// запускаем фильтр массива дат
+const dd = formatArr(dataArray);
+console.log(dd);
