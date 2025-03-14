@@ -1,8 +1,7 @@
-const ToDoList = {
-  tasks: [
-    { title: "Помыть посуду", id: 1, priority: 1 },
-  ],
-  getTaskById () {
+export const ToDoList = {
+  tasks: [],
+  lastId: 0,
+  getTaskById (id) {
     const task = this.tasks.find((task) => task.id === id);
     if(!task) {
         console.log(`задача с id = ${id} не найдена`);
@@ -10,12 +9,13 @@ const ToDoList = {
     }
     return task;
   },
-  addTask: function (title='сделать...', priority=2) {
-    const newId = this.tasks.length + 1;
-    this.tasks.push({ title, id: newId, priority });
+
+  addTask (title='сделать...', priority=2) {
+    this.tasks.push({ title, id: ++this.lastId, priority });
     return this.tasks;
   },
-  removeTask () {
+
+  removeTask (id) {
     const task = this.getTaskById(id);
     if(task){
         this.tasks = this.tasks.filter(task => task.id !== id);
