@@ -1,6 +1,7 @@
 export const ToDoList = {
   tasks: [],
   lastId: 0,
+
   getTaskById (id) {
     const task = this.tasks.find((task) => task.id === id);
     if(!task) {
@@ -33,14 +34,16 @@ export const ToDoList = {
     return task;
 },
 
-  sortTasksByPriority: function () {
+  sortTasksByPriority () {
     return this.tasks.sort((a, b) => a.priority - b.priority)
   },
 };
 
 ToDoList.addTask("снять деньги", 6);
 ToDoList.addTask("отвести детей в сад", 1);
-ToDoList.removeTask(7);
-ToDoList.updateTask({title: "Выпить кофе", id: 1});
-ToDoList.updateTask({ id: 3})
-ToDoList.sortTasksByPriority();
+console.log(ToDoList)
+ToDoList.removeTask(1);
+console.log(ToDoList);
+// ToDoList.updateTask({title: "Выпить кофе", id: 1});
+// ToDoList.updateTask({ id: 3})
+// ToDoList.sortTasksByPriority();
