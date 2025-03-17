@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  background: #17171c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+main {
+  max-width: 700px;
+  width: 100%;
+  height: 100vh;
+  padding: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-self: center;
+  justify-content: center;
+  height: 100%;
+}
+h1 {
+  letter-spacing: 2px;
+}
+.input {
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 40px;
+  color: #17171c;
+  font-family: "Roboto", sans-serif;
+  padding: 12px 20px;
+  outline: none;
+  text-align: right;
+}
+.input:focus {
+  border: 6px solid orange;
+}
+.buttons-groop {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "sum mult clear"
+    "sub div clear";
+}
+
+.button {
+  height: 100%;
+  background-color: #4b5efc;
+  font-size: 64px;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sum {
+  grid-area: sum;
+}
+
+#sub {
+  grid-area: sub;
+}
+#mult {
+  grid-area: mult;
+}
+#clear {
+  grid-area: clear;
+}
+#div {
+  grid-area: div;
+}
+.result {
+  background-color: #fff;
+}
